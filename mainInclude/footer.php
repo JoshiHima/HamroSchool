@@ -16,34 +16,16 @@
       </div>
       <div class="modal-body">
         <!-- Start Student Registration Form-->
-<form>
-  <div class="form-group mb-3">
-    <label for="stuname" class="font-weight-bold">
-      <i class="fas fa-user me-2"></i> Name
-    </label>
-    <input type="text" class="form-control" placeholder="Name" name="stuname" id="stuname">
-  </div>
+         <?php
+          include('studentRegistration.php');
+         ?>
 
-  <div class="form-group mb-3">
-    <label for="stuemail" class="font-weight-bold">
-      <i class="fas fa-envelope me-2"></i> Email
-    </label>
-    <input type="email" class="form-control" placeholder="Email" name="stumail" id="stuemail">
-    <small class="form-text text-muted">We'll never share your email with anyone else.</small>
-  </div>
-
-  <div class="form-group mb-3">
-    <label for="stupass" class="font-weight-bold">
-      <i class="fas fa-key me-2"></i> New Password
-    </label>
-    <input type="password" class="form-control" placeholder="Password" name="stupass" id="stupass">
-  </div>
-</form>
-<!-- End Student Registration Form-->
+        <!-- End Student Registration Form-->
 
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary">Sign Up </button>
+        <span id="successMsg"></span>
+      <button type="button" class="btn btn-primary" onclick="addStu()">Sign Up </button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
@@ -148,8 +130,11 @@
 <script src="js/jquery.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
+
 <script src="js/all.min.js"> </script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/slider.js"></script>
+
+<script type="text/javascript" src="js/owl.carousel.min.js"></script>
+<script type="text/javascript" src="js/slider.js"></script>
+<script type="text/javascript" src="js/ajaxrequest.js"></script>
 </body>
 </html>
