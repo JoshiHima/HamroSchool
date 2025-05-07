@@ -39,15 +39,25 @@ $(document).ready(function () {
         }
       });
     });
-  });
-  
-  // Student Registration Ajax Call
-  function addStu() {
+
+    // Clear Registration Form when Modal is Shown
+    $('#stuRegModalCenter').on('show.bs.modal', function () {
+        clearStuRegField();
+    });
+
+    // Clear Login Form when Modal is Shown
+    $('#stuLoginModalCenter').on('show.bs.modal', function () {
+        clearStuLoginField();
+    });
+});
+
+// Student Registration Ajax Call
+function addStu() {
     var reg = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
     var stuname = $("#stuname").val();
     var stuemail = $("#stuemail").val();
     var stupass = $("#stupass").val();
-  
+
     // Name Validation
     if (stuname.trim() == "") {
       $("#statusMsg1").html(
@@ -56,7 +66,7 @@ $(document).ready(function () {
       $("#stuname").focus();
       return false;
     }
-  
+
     // Email Validation
     else if (stuemail.trim() == "") {
       $("#statusMsg2").html(
@@ -71,7 +81,7 @@ $(document).ready(function () {
       $("#stuemail").focus();
       return false;
     }
-  
+
     // Password Validation
     else if (stupass.trim() == "") {
       $("#statusMsg3").html(
@@ -80,7 +90,7 @@ $(document).ready(function () {
       $("#stupass").focus();
       return false;
     }
-  
+
     // Ajax Call to PHP
     else {
       $.ajax({
@@ -116,13 +126,49 @@ $(document).ready(function () {
         }
       });
     }
-  }
-  
-  // Clear Form Fields
-  function clearStuRegField() {
+}
+
+// Clear Form Fields
+function clearStuRegField() {
     $("#stuRegForm").trigger("reset");
     $("#statusMsg1").html(" ");
     $("#statusMsg2").html(" ");
     $("#statusMsg3").html(" ");
-  }
-  
+    $("#successMsg").html(" ");
+}
+
+// Clear Login Form Fields
+function clearStuLoginField() {
+    $("#stuLoginForm").trigger("reset");
+    $("#statusLogMsg").html(" ");
+}
+
+// Ajax for student login verification
+function checkStuLogin(){
+    var stuLogEmail = $("#stuLogemail").val();
+    var stuLogPass = $("#stuLogpass").val();
+
+    $.ajax({
+        url: 'Student/addstudent.php',
+        method: "POST",
+        data:{
+            checkLogemail: "checklogemail",
+            stuLogEmail: stuLogEmail,
+            stuLogPass: stuLogPass
+        },
+        success: function(data){
+            if(data == 0){ // if the email or password does not match
+                $("#statusLogMsg").html(
+                    '<small class="alert alert-danger">Invalid Email ID or Password !!!</small>'
+                );
+            }  else if(data == 1){ // if the email and password match
+                $("#statusLogMsg").html(
+                    '<div class="spinner-border text-succes" role="status"></div>'
+                );
+                setTimeout(()=>{ // redirect to the index page after 1 second
+                    window.location.href="index.php";
+                }, 1000);                          
+            }
+        },
+    })
+}

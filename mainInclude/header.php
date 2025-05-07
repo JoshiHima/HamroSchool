@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/owl.carousel.min.css">
 <link rel="stylesheet" href="css/owl.theme.default.min.css">
 
@@ -32,10 +33,27 @@
        <li class="nav-item custom-nav-item"><a href="index.php" class="nav-link">Home</a></li>
        <li class="nav-item custom-nav-item"><a href="courses.php" class="nav-link">Courses</a></li>
        <li class="nav-item custom-nav-item"><a href="paymentstatus.php" class="nav-link">Payment Status</a></li>
-       <li class="nav-item custom-nav-item"><a href="" class="nav-link">My Profile</a></li>
-       <li class="nav-item custom-nav-item"><a href="" class="nav-link">Logout</a></li>
-       <li class="nav-item custom-nav-item"><a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#stuLoginModalCenter">Login</a></li>
-       <li class="nav-item custom-nav-item"><a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#stuRegModalCenter">Sign Up</a></li>
+
+        <?php
+            session_start();
+            if(isset($_SESSION['is_Login'])){ 
+                // if the user is login, then only he should see the logout and my profile page
+                echo'
+                <li class="nav-item custom-nav-item"><a href="" class="nav-link">My Profile</a></li>
+                <li class="nav-item custom-nav-item"><a href="logout.php" class="nav-link">Logout</a></li> 
+                ';
+            } else{
+                // if the user is not logged in then he should see the login and signup page
+                echo '
+                <li class="nav-item custom-nav-item"><a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#stuLoginModalCenter">Login</a></li>
+                <li class="nav-item custom-nav-item"><a href="" class="nav-link" data-bs-toggle="modal" data-bs-target="#stuRegModalCenter">Sign Up</a></li>
+                ';
+            }
+        
+        ?>
+
+       
+       
        <li class="nav-item custom-nav-item"><a href="" class="nav-link">Feeback</a></li>
        <li class="nav-item custom-nav-item"><a href="" class="nav-link">Contact</a></li>
 </ul>

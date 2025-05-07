@@ -64,7 +64,8 @@
 
       </div>
       <div class="modal-footer">
-      <button type="button" class="btn btn-primary" id="stuLoginBtn">Login</button>
+        <small id="statusLogMsg"></small>
+      <button type="button" class="btn btn-primary" id="stuLoginBtn" onclick = "checkStuLogin()">Login</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
       </div>
     </div>
@@ -128,6 +129,7 @@
 
 
 <script src="js/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="js/bootstrap.min.js"></script>
 

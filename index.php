@@ -19,7 +19,21 @@ include('./mainInclude/header.php');
     <div class="vid-content">
         <h1 class="my-content">Welcome to HamroSchool</h1>
         <small class="my-content">Learn and Implement</small> <br><br>
-        <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#stuRegModalCenter">Get Started</a>
+
+        <?php
+        //here we dont need to start the session becuase the header is included 
+        // here and the session has already started in the header file
+        if(!isset($_SESSION['is_Login'])){
+            echo '
+            <a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#stuRegModalCenter">Get Started</a>
+            ';
+        } else{
+            echo '
+            <a href="" class="btn btn-primary">My Profile</a>
+            ';
+        }
+        
+        ?>
         <!-- Button trigger modal -->
     </div>
 </div>
